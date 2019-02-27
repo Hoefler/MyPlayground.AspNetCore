@@ -1,0 +1,1 @@
+https://dev.azure.com/danielhoefler/MyPlayground.AspNetCore/_apis/build/status/MyPlayground.AspNetCore?branchName=master
