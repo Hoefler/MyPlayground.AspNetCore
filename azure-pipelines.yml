@@ -20,6 +20,5 @@ steps:
   inputs:
     command: test
     projects: 
-    '**/*tests/*.csproj' 
-    '**/*Tests/*.csproj' 
+    '**/*tests/*.csproj|**/*Tests/*.csproj'  
     arguments: '--configuration $(buildConfiguration)'
