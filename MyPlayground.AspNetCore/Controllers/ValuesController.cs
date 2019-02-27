@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace MyPlayground.AspNetCore.Controllers
 {
@@ -11,11 +12,18 @@ namespace MyPlayground.AspNetCore.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private readonly IOptions<AppSettings> _options;
+
         private ILogger<ValuesController> _logger { get; }
 
-        public ValuesController(ILogger<ValuesController> logger)
+        public ValuesController(ILogger<ValuesController> logger, IOptions<AppSettings> options)
         {
             _logger = logger;
+            _options = options;
+
+            _logger.LogDebug($"Setting1 = {_options.Value.Setting1}");
+            _logger.LogDebug($"Setting2 = {_options.Value.Setting2}");
+
         }
 
         // GET api/values
