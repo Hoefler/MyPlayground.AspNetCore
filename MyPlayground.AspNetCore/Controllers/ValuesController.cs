@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using MyPlayground.Data;
 
 namespace MyPlayground.AspNetCore.Controllers
 {
@@ -13,14 +14,15 @@ namespace MyPlayground.AspNetCore.Controllers
     public class ValuesController : ControllerBase
     {
         private readonly IOptions<AppSettings> _options;
+        private readonly IDocumentRepository _documentRepository;
 
         private ILogger<ValuesController> _logger { get; }
 
-        public ValuesController(ILogger<ValuesController> logger, IOptions<AppSettings> options)
+        public ValuesController(ILogger<ValuesController> logger, IOptions<AppSettings> options, IDocumentRepository documentRepository)
         {
             _logger = logger;
             _options = options;
-
+            _documentRepository = documentRepository;
             _logger.LogDebug($"Setting1 = {_options.Value.Setting1}");
             _logger.LogDebug($"Setting2 = {_options.Value.Setting2}");
 

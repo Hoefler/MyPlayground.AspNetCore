@@ -15,7 +15,6 @@ namespace MyPlayground.NHibernate
 
         public SQLiteInMemorySessionFactory()
         {
-            Create();
         }
 
         private void BuildConnection()
@@ -51,6 +50,8 @@ namespace MyPlayground.NHibernate
 
         public ISession OpenSession()
         {
+            Create();
+
             return _sessionFactory.WithOptions().Connection(_dbConnection).OpenSession();
         }
     }
