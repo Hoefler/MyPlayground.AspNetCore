@@ -5,6 +5,8 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.Extensions.Logging;
+using Moq;
 
 namespace MyPlayground.Integrationstests.Repository
 {
@@ -15,7 +17,7 @@ namespace MyPlayground.Integrationstests.Repository
         public void Constructor_Test()
         {
             DocumentRepository repo =
-                new DocumentRepository(new SQLiteInMemorySessionFactory());
+                new DocumentRepository(new SQLiteInMemorySessionFactory(), Mock.Of<ILogger<IDocumentRepository>>());
 
             Assert.IsNotNull(repo);
         }
@@ -24,7 +26,7 @@ namespace MyPlayground.Integrationstests.Repository
         public void GetAll_When_No_Data_In_Db_Test()
         {
             DocumentRepository repo =
-                new DocumentRepository(new SQLiteInMemorySessionFactory());
+                new DocumentRepository(new SQLiteInMemorySessionFactory(),Mock.Of<ILogger<IDocumentRepository>>());
 
             var documents = repo.GetAll();
             Assert.IsNotNull(documents);
@@ -35,7 +37,7 @@ namespace MyPlayground.Integrationstests.Repository
         public void Save_Test()
         {
             DocumentRepository repo =
-                new DocumentRepository(new SQLiteInMemorySessionFactory());
+                new DocumentRepository(new SQLiteInMemorySessionFactory(),Mock.Of<ILogger<IDocumentRepository>>());
 
             var document = new DocumentDto
             {

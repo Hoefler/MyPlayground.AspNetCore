@@ -1,0 +1,42 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<script>
+    function buttonClicked() {
+        if (document.getElementById("kreditkarte").checked)
+            alert("Mit 'kreditkarte' bestellt.");
+        else if (document.getElementById("paypal").checked)
+            alert("Mit 'paypal' bestellt.");
+        else if (document.getElementById("telefonkarte").checked)
+            alert("Mit 'telefonkarte' bestellt.");
+        else if (document.getElementById("telekomRechnung").checked)
+            alert("Mit 'telekomRechnung' bestellt.");
+    }
+
+</script>
+
+<div class="text-center">
+    <h1 class="display-4" style="background-color:#ff00ff">Welcome</h1>
+
+    <h1>Bestellung</h1>
+    <br />
+    <div style="border: 3px dashed">
+        <br />
+        <input id="kreditkarte" class="option-input radio" type="radio" name="bezahlverfahren"  value="kreditkarte"> Kreditkarte<br>
+        <br />
+        <input id="paypal" class="option-input radio" type="radio" name="bezahlverfahren" value="paypal"> PayPal<br>
+        <br />
+        <input id="telefonkarte" class="option-input radio" type="radio" name="bezahlverfahren" value="telefonkarte" checked="true"> Telefonkarte
+        <br />
+        <br />
+        <input id="telekomRechnung" class="option-input radio" type="radio" name="bezahlverfahren" value="telekomRechnung"> Telekom Rechnung
+        <br />
+        <br />
+    </div>
+    <br />
+
+    <button id="buttonBestellen" onclick="buttonClicked()">Zahlungspflichtig bestellen</button>
+</div>

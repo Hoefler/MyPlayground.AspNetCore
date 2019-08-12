@@ -14,15 +14,15 @@ namespace MyPlayground.AspNetCore.Controllers
     public class ValuesController : ControllerBase
     {
         private readonly IOptions<AppSettings> _options;
-        private readonly IDocumentRepository _documentRepository;
+        private readonly IDocumentService _documentService;
 
         private ILogger<ValuesController> _logger { get; }
 
-        public ValuesController(ILogger<ValuesController> logger, IOptions<AppSettings> options, IDocumentRepository documentRepository)
+        public ValuesController(ILogger<ValuesController> logger, IOptions<AppSettings> options, IDocumentService documentService)
         {
             _logger = logger;
             _options = options;
-            _documentRepository = documentRepository;
+            _documentService = documentService;
             _logger.LogDebug($"Setting1 = {_options.Value.Setting1}");
             _logger.LogDebug($"Setting2 = {_options.Value.Setting2}");
 
@@ -33,7 +33,7 @@ namespace MyPlayground.AspNetCore.Controllers
         public ActionResult<IEnumerable<string>> Get()
         {
             _logger.LogDebug("Get");
-            return new string[] { "value1", "value2" };
+            return _documentService.GetDocuments().ToList();
         }
 
         // GET api/values/5

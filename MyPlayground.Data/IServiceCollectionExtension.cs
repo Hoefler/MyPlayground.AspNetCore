@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace MyPlayground.Data
 {
@@ -6,7 +7,7 @@ namespace MyPlayground.Data
     {
         public static void AddDocumentRepository(this IServiceCollection serviceCollection)
         {
-            serviceCollection.AddTransient<IDocumentRepository, DocumentRepository>();
+            serviceCollection.TryAddTransient<IDocumentRepository, DocumentRepository>();
         }
     }
 }
